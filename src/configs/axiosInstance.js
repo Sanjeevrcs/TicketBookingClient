@@ -2,7 +2,7 @@ import axios from "axios";
 import { Route, useNavigate } from 'react-router-dom';
 
 const axiosInstance = axios.create({
-    baseURL: "https://ticketbookingsystem-4fpa.onrender.com",
+    baseURL: "https://ticketbookingsystem-4fpa.onrender.com/api/v1",
 
     headers: {
         "Content-Type": "application/json",
