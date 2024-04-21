@@ -103,7 +103,7 @@ export default function Booking() {
                                         value={from}
                                         onChange={(e) => setFrom(e.target.value)}
                                         >
-                                        {locations.map((location) => (
+                                        {locations && locations.map((location) => (
                                             <MenuItem key={location._id} value={location._id}>{location.name}</MenuItem>
                                         ))}
                                     </Select>
@@ -116,7 +116,7 @@ export default function Booking() {
                                         value={to}
                                         onChange={(e) => setTo(e.target.value)}
                                         >
-                                        {locations.map((location) => (
+                                        {locations && locations.map((location) => (
                                             <MenuItem key={location._id} value={location._id}>{location.name}</MenuItem>
                                         ))}
                                     </Select>
