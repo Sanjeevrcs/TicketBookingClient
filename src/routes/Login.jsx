@@ -33,8 +33,12 @@ export default function Login(){
             password: password
         }).then((response) => {
             console.log(response);
-            console.log(response?.data);
-            return navigate("/");
+            if (response?.data?.status === "success"){
+                return navigate("/");
+            }
+            else{
+                alert(response?.data?.message);
+            }
         }).catch((error) => {
             console.log(error);
             console.log(error?.response?.data?.message);
