@@ -13,8 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
+import {Link} from 'react-router-dom';
 
-const pages = [];
+const pages = ['Profile'];
 const settings = ['Profile','Logout'];
 
 
@@ -87,11 +88,13 @@ function NavBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              
+                <MenuItem key={"Profile"} onClick={handleCloseNavMenu}>
+                  <Link to="/profile">
+                    <Typography textAlign="center">Profile</Typography>
+                  </Link>
                 </MenuItem>
-              ))}
+              
             </Menu>
           </Box>
           <Typography
@@ -114,15 +117,15 @@ function NavBar() {
             Bus Ticket Booking
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            
               <Button
-                key={page}
+                key={"Profile"}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                Profile
               </Button>
-            ))}
+          
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -147,11 +150,19 @@ function NavBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+             
+                <MenuItem key={"Profile"} onClick={handleCloseUserMenu}>
+                  <Link to="/profile">
+                    <Typography textAlign="center">Profile</Typography>
+                  </Link>
                 </MenuItem>
-              ))}
+
+                <MenuItem key={"Logout"} onClick={handleCloseUserMenu}>
+                  <Link to="/logout">
+                    <Typography textAlign="center">Logout</Typography>
+                  </Link>
+                </MenuItem>
+
             </Menu>
           </Box>
         </Toolbar>

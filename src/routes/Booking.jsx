@@ -3,13 +3,27 @@ import NavBar from '../components/NavBar';
 import Axios from "../configs/axiosInstance";
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import { Box, Grid, Card, CardContent, Button, Typography } from '@mui/material';
+import {  Grid, Card, CardContent, Button, Typography } from '@mui/material';
+import {  CardActions, CircularProgress, SvgIcon } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Route, useNavigate } from 'react-router-dom';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+
+const bull = (
+    <Box
+      component="span"
+      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+    >
+      •
+    </Box>
+  );
+  
 
 export default function Booking() {
 
@@ -45,6 +59,12 @@ export default function Booking() {
        console.log("To: " + to);
        var dateObject = new Date(date);
        var finaldate = dateObject.getDate() + '-' +  (dateObject.getMonth() + 1)  + '-' +  dateObject.getFullYear()
+    
+       
+       setFrom("660b61be8c3a057b37234ef9")
+       setTo("660b61be8c3a057b37234efc")
+       finaldate = "15-09-2024"
+       
        Axios.get("/searchBus", {params :{
                from: from,
                to: to,
@@ -119,23 +139,60 @@ export default function Booking() {
                     </CardContent>
                 </Card>
             </Box>
-        
+      
+           
+            <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: 2,
+                padding: 2,
+                marginTop: '20px',
+                boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+                borderRadius: '8px',
+                backgroundColor: '#f8f9fa',
+                
+            }}
+            >
             {trips && trips.map((trip, index) => (
-                <Card key={index} sx={{ maxWidth: 345, margin: 'auto', marginTop: '20px' }}>
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {trip.busName}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Bus Type: {trip.busType}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Bus No: {trip.busNumber}
-                        </Typography>
-                        <Button variant="contained" color="primary" onClick={() => handleBookSeats(trip.busId)}>Book Seats</Button>
-                    </CardContent>
+                <Card
+                key={index}
+                sx={{
+                    width: 300,
+                    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+                    borderRadius: '8px',
+                    transition: 'transform 0.2s',
+                    '&:hover': {
+                    transform: 'scale(1.05)',
+                    },
+                }}
+                >
+                <CardContent>
+                    <Typography variant="h5" component="div">
+                    {trip.busName}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    Bus Type: {trip.busType}
+                    </Typography>
+                    <Typography variant="body2">
+                    Bus Number: {trip.busNumber}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => handleBookSeats(trip.busId)}
+                    sx={{ width: '100%' }}
+                    >
+                    Book Seats
+                    </Button>
+                </CardActions>
                 </Card>
             ))}
+            </Box>
 
         </>
     )
