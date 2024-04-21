@@ -60,11 +60,6 @@ export default function Booking() {
        var dateObject = new Date(date);
        var finaldate = dateObject.getDate() + '-' +  (dateObject.getMonth() + 1)  + '-' +  dateObject.getFullYear()
     
-       
-       setFrom("660b61be8c3a057b37234ef9")
-       setTo("660b61be8c3a057b37234efc")
-       finaldate = "15-09-2024"
-       
        Axios.get("/searchBus", {params :{
                from: from,
                to: to,
